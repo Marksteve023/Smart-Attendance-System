@@ -1,0 +1,154 @@
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease; /* Global transition for smoother effects */
+}
+
+/* Body and HTML to center content */
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #66a6ff, #89f7fe); /* Soft blue gradient */
+    color: #fff; /* White text color for contrast */
+    font-size: 16px; /* Set base font size */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Adding an overlay for visual depth */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black overlay */
+    z-index: -1; /* Place overlay behind the content */
+}
+
+/* Login Container */
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.1); /* Slight transparent white background */
+    backdrop-filter: blur(10px); /* Glass-like effect */
+    width: 22rem;
+    border-radius: 12px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add more shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Subtle border */
+    animation: fadeIn 0.6s ease-out; /* Added fade-in animation */
+}
+h1{
+    background: linear-gradient(135deg, #ff7f50, #ff6347, #1e90ff); /* Gradient from orange to blue */
+    -webkit-background-clip: text; /* Apply gradient to text */
+    color: transparent; /* Make text color transparent so the gradient is visible */
+}
+
+/* Login Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5rem; /* Increased spacing between fields */
+}
+
+/* Input Fields */
+.login input, select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.login input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Added blue glow on focus */
+}
+
+/* Input Fields Hover */
+.login input:hover, select:hover {
+    border-color: #007bff; /* Highlight border on hover */
+}
+
+/* Select Dropdown */
+select {
+    appearance: none; /* Remove default styling */
+    cursor: pointer;
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.125rem; /* Slightly larger button text */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Slightly lift button on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Button returns to original position */
+}
+
+/* Button Focus */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow on focus */
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.error-message.visible {
+    display: block; /* Show error message when the 'visible' class is added */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 600px) {
+    .login {
+        width: 90%;
+        padding: 2rem;
+    }
+
+
+    button {
+        font-size: 1rem; /* Adjust button font size for small screens */
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
