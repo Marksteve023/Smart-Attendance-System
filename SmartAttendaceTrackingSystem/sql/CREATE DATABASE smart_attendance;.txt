@@ -1,0 +1,158 @@
+CREATE DATABASE smart_attendance;
+USE smart_attendance;
+
+-- Table for storing teacher accounts
+CREATE TABLE teachers (
+    teacher_id INT AUTO_INCREMENT PRIMARY KEY, -- System-generated ID
+    school_teacher_id VARCHAR(50) NOT NULL UNIQUE, -- Official school-assigned ID
+    teacher_name VARCHAR(255) NOT NULL,
+    program VARCHAR(255) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, 
+    picture VARCHAR(255) DEFAULT NULL,
+    role ENUM('Admin', 'Teacher') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table for storing student information
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY, -- System-generated ID
+    school_student_id VARCHAR(50) NOT NULL UNIQUE, -- Official school-assigned ID
+    rfid_tag VARCHAR(50) NOT NULL UNIQUE, -- RFID tag assigned to student
+    student_name VARCHAR(255) NOT NULL,
+    program VARCHAR(255) NOT NULL,
+    year_level ENUM('1st Year', '2nd Year', '3rd Year', '4th Year') NOT NULL,
+    section VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table for storing courses with sections
+CREATE TABLE courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL, 
+    section VARCHAR(50) NOT NULL, 
+    semester ENUM('1st Semester', '2nd Semester', '3rd Semester') NOT NULL, 
+    year INT NOT NULL, -- Added year to track multi-year course offerings
+    full_course_name VARCHAR(255) GENERATED ALWAYS AS (CONCAT(course_name, ' ', section)) STORED, -- Combined course name + section
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table to assign courses to teachers with sections
+CREATE TABLE assigned_courses (
+    assigned_course_id INT AUTO_INCREMENT PRIMARY KEY,
+    school_teacher_id VARCHAR(50) NOT NULL, -- Teacher's official school ID
+    course_id INT NOT NULL, -- References the combined course and section
+    section VARCHAR(50) NOT NULL, -- Section the teacher is assigned to
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (school_teacher_id) REFERENCES teachers(school_teacher_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    UNIQUE (school_teacher_id, course_id) -- Prevents duplicate assignments
+);
+
+-- Table for tracking attendance using RFID scans
+CREATE TABLE attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    school_student_id VARCHAR(50) NOT NULL, -- Uses school-assigned ID
+    course_id INT NOT NULL,
+    school_teacher_id VARCHAR(50) NOT NULL, -- Uses school-assigned ID
+    section VARCHAR(100) NOT NULL, -- Section of the course for attendance tracking
+    semester ENUM('1st Semester', '2nd Semester', '3rd Semester') NOT NULL, -- Added semester to track attendance by semester
+    date DATE NOT NULL, -- Added date field for attendance tracking
+    status ENUM('Present', 'Late', 'Absent') NOT NULL DEFAULT 'Present',
+    scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- When RFID is scanned
+    FOREIGN KEY (school_student_id) REFERENCES students(school_student_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (school_teacher_id) REFERENCES teachers(school_teacher_id) ON DELETE CASCADE
+);
+
+-- Table for managing RFID logs (raw scans from ESP32)
+CREATE TABLE rfid_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    rfid_tag VARCHAR(50) NOT NULL, -- Direct scan from RFID module
+    student_id INT, -- Added student_id for direct link to student
+    scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- When it was scanned
+    processed TINYINT(1) DEFAULT 0, -- 0 = Not processed, 1 = Processed
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+);
+CREATE DATABASE smart_attendance;
+USE smart_attendance;
+
+-- Table for storing teacher accounts
+CREATE TABLE teachers (
+    teacher_id INT AUTO_INCREMENT PRIMARY KEY, -- System-generated ID
+    school_teacher_id VARCHAR(50) NOT NULL UNIQUE, -- Official school-assigned ID
+    teacher_name VARCHAR(255) NOT NULL,
+    program VARCHAR(255) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, 
+    picture VARCHAR(255) DEFAULT NULL,
+    role ENUM('Admin', 'Teacher') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table for storing student information
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY, -- System-generated ID
+    school_student_id VARCHAR(50) NOT NULL UNIQUE, -- Official school-assigned ID
+    rfid_tag VARCHAR(50) NOT NULL UNIQUE, -- RFID tag assigned to student
+    student_name VARCHAR(255) NOT NULL,
+    program VARCHAR(255) NOT NULL,
+    year_level ENUM('1st Year', '2nd Year', '3rd Year', '4th Year') NOT NULL,
+    section VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table for storing courses with sections
+CREATE TABLE courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL, 
+    section VARCHAR(50) NOT NULL, 
+    semester ENUM('1st Semester', '2nd Semester', '3rd Semester') NOT NULL, 
+    year INT NOT NULL, -- Added year to track multi-year course offerings
+    full_course_name VARCHAR(255) GENERATED ALWAYS AS (CONCAT(course_name, ' ', section)) STORED, -- Combined course name + section
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table to assign courses to teachers with sections
+CREATE TABLE assigned_courses (
+    assigned_course_id INT AUTO_INCREMENT PRIMARY KEY,
+    school_teacher_id VARCHAR(50) NOT NULL, -- Teacher's official school ID
+    course_id INT NOT NULL, -- References the combined course and section
+    section VARCHAR(50) NOT NULL, -- Section the teacher is assigned to
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (school_teacher_id) REFERENCES teachers(school_teacher_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    UNIQUE (school_teacher_id, course_id) -- Prevents duplicate assignments
+);
+
+-- Table for tracking attendance using RFID scans
+CREATE TABLE attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    school_student_id VARCHAR(50) NOT NULL, -- Uses school-assigned ID
+    course_id INT NOT NULL,
+    school_teacher_id VARCHAR(50) NOT NULL, -- Uses school-assigned ID
+    section VARCHAR(100) NOT NULL, -- Section of the course for attendance tracking
+    semester ENUM('1st Semester', '2nd Semester', '3rd Semester') NOT NULL, -- Added semester to track attendance by semester
+    date DATE NOT NULL, -- Added date field for attendance tracking
+    status ENUM('Present', 'Late', 'Absent') NOT NULL DEFAULT 'Present',
+    scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- When	 RFID is scanned
+    FOREIGN KEY (school_student_id) REFERENCES students(school_student_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses	(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (school_teacher_id) REFERENCES teachers(school_teacher_id) ON DELETE CASCADE
+);
+
+-- Table for managing RFID logs (raw scans from ESP32)
+CREATE TABLE rfid_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    rfid_tag VARCHAR(50) NOT NULL, -- Direct scan from RFID module
+    student_id INT, -- Added student_id for direct link to student
+    scan_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- When it was scanned
+    processed TINYINT(1) DEFAULT 0, -- 0 = Not processed, 1 = Processed
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+);

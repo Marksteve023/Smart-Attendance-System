@@ -1,0 +1,40 @@
+|
+|
+|--admin
+|   |
+|   |----scripts
+|   |       |
+|   |       |---delete-course.php
+|   |       |---assigned-course.php
+|   |       |---create-account.php
+|   |       |---delete-account.php
+|   |       |---create-course.php
+|   |       |---delete-course.php
+|   |       |---create-account.php
+|   |       |---create-account.php
+|   |
+|   |      
+|   |      
+|   |----course.php
+|   |----dashboard.php
+|   |----manage-students.php
+|   |----user.php
+|   |----manage-teachers.php
+|   
+|  
+| 
+|   
+|--assests
+|    |
+|    |---css
+|    |---img
+|    |---js
+|    |  |
+|    |  |--admin.js
+|    
+|---config  
+|   |
+|   |---db.php
+|    
+|  
+|   

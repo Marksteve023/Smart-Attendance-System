@@ -1,0 +1,456 @@
+/* ==============================
+    MAIN DASHBOARD STYLING
+============================== */
+
+/* Dashboard cards grid layout */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual dashboard card style */
+.dashboard-card {
+  background-color: var(--body-color);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Center align text */
+}
+
+/* Hover effect on dashboard cards */
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Card title */
+.dashboard-card h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+/* Card paragraph */
+.dashboard-card p {
+  font-size: 1rem;
+  color: var(--title-color);
+  margin: 0;
+}
+
+/* ==============================
+    COURSE PAGE STYLING
+============================== */
+
+
+.createCourse {
+  margin-top: 1rem;
+  min-width: 250px;
+  max-width: 400px;
+  padding: 1rem;
+  background-color: var(--body-color);
+  box-shadow:var(--box-shadow);
+  border-radius: 10px;
+  color: var(--title-color);
+}
+
+
+.course-list-container {
+  margin-top: 2rem;
+  min-width: 350px;
+  padding: 1rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  height: 500px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make table scrollable */
+.course-table-container {
+  max-height: 345px; /* Scrollable height */
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* Course table styles */
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+/* Sticky table header */
+.course-table thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--body-color);
+  z-index: 2;
+}
+
+.course-table thead th{
+  color: var(--title-color);
+}
+/* Table cells */
+.course-table th,
+.course-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: var(--text-color);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Table row hover effect */
+.course-table tbody tr:hover {
+  background-color: #2c2e3a;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==============================
+    ASSIGN COURSE PAGE
+============================== */
+
+.assignCourse {
+  margin-top: 1rem;
+  flex-grow: 1;
+  flex-basis: 280px;
+  min-width: 250px;
+  max-width: 400px;
+  padding: 1rem;
+  background-color: var(--body-color);
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: var(--title-color);
+}
+
+.assignCourse span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: block;
+  color: var(--primary-color);
+}
+
+
+
+.assignCourse {
+  margin-bottom: 2rem;
+}
+
+/* ================================
+  ASSIGNED TEACHER LIST CONTAINER
+  ============================== */
+
+  .assigned-teacher-list-container {
+    min-width: 350px;
+    padding: 1rem;
+    background-color: var(--body-color);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    height: 500px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Scrollable wrapper */
+  .assigned-teacher-table-container {
+    max-height: 345px;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+  
+ 
+  .assigned-teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+ 
+  .assigned-teacher-table thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--body-color);
+    z-index: 2;
+  }
+  
+  /* Table header and cells */
+  .assigned-teacher-table th,
+  .assigned-teacher-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: var(--text-color);
+    border-top: 1px solid var(--border-color);
+  }
+  
+
+  
+/* ==============================
+    STUDENT MANAGEMENT PAGE
+============================== */
+
+/* Add Student Form Container */
+.addStudent {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  min-width: 250px;
+  max-width: 400px;
+  padding: 1rem;
+  background-color: var(--body-color);
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: var(--title-color);
+}
+
+/* Student list container */
+.student-list-container {
+  flex-grow: 2;
+  flex-basis: 500px;
+  min-width: 350px;
+  padding: 1rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 550px;
+  margin-bottom: 2rem;
+}
+
+/* Scrollable table wrapper */
+.student-table-container {
+  max-height: 345px; /* Enables scrolling */
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+/* Student table styles */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Sticky table header */
+.student-table thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--body-color);
+  z-index: 10;
+}
+
+/* Table header styles */
+.student-table thead th {
+  color: var(--title-color);
+  text-align: left;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+/* Table row and cell styles */
+.student-table tbody td {
+  padding: 0.8rem;
+  color: var(--text-color);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Hover effect */
+.student-table tbody tr:hover {
+  background-color: #373946;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==============================
+     USER MANAGEMENT PAGE
+============================== */
+
+/* Create Account Container */
+.create-account-container {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.25);
+  color: var(--title-color);
+}
+
+
+/* Account Form Row */
+.account-form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Columns for input fields */
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Input Field Style */
+.account-input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Account List Container */
+/* Account List Container */
+.Account-list-container {
+  margin-top: 2rem;
+  min-width: 350px;
+  padding: 1.5rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.25);
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  height: 550px;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+}
+
+/* Table Styles */
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-table thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--body-color);
+  z-index: 10;
+}
+.account-table thead th {
+  color: var(--title-color);
+  text-align: left;
+  font-weight: 600;
+}
+
+.account-table tbody td {
+  padding: 0.8rem;
+  color: var(--text-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.account-table tbody tr {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on table rows */
+.account-table tbody tr:hover {
+  background-color: #2c2e3a;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* User Picture */
+
+.account-table .user-picture{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Create Account Button */
+.create-btn {
+  background-color: var(--first-color);
+  color: var(--body-color);
+  padding: 0.8rem 1.5rem; /* Padding around the button */
+  font-size: 1rem; /* Font size */
+  font-weight: var(--font-semi-bold);
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer; 
+  width: 120px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+
+.create-btn:hover {
+  background-color: var(#4d54d1); 
+  transform: scale(1.02); 
+}
+
+
+.create-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--box-shadow); 
+}
+
+.account-table th,
+.account-table td {
+  text-align: left;
+}
+
+.account-table td {
+  width: auto;
+}
+
+
+
+/* ===================================
+  RESPONSIVE DESIGN FOR SMALL SCREENS
+====================================*/
+@media (max-width: 768px) {
+  /* Adjust layout for smaller screens */
+  .main-flex-container {
+    flex-direction: column;
+  }
+
+  /* Full-width containers */
+  .createCourse, .course-list-container, .addStudent, .student-list-container {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 2rem;
+  }
+  .account-form-row {
+    flex-direction: column;
+  }
+
+  .column {
+    flex-basis: 100%;
+  }
+
+  .create-account-container {
+    padding: 1.5rem;
+  }
+
+  .account-table th,
+  .account-table td {
+    padding: 0.8rem;
+  }
+
+  .account-table img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .account-table th,
+  .account-table td {
+    font-size: 0.9rem;
+  }
+}
